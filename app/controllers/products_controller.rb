@@ -1,35 +1,25 @@
+#
+# A product is anything that can have a median price, such as a car.
+#
 class ProductsController < ApplicationController
-  # GET /products
-  # GET /products.json
+
+  respond_to :html, :json
+
+  # GET /products{,.json}
   def index
     @products = Product.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @products }
-    end
+	respond_with @products
   end
 
-  # GET /products/1
-  # GET /products/1.json
+  # GET /products/1{,.json}
   def show
     @product = Product.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @product }
-    end
+	respond_with @product
   end
 
-  # GET /products/new
-  # GET /products/new.json
+  # GET /products/new{,.json}
   def new
     @product = Product.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @product }
-    end
   end
 
   # GET /products/1/edit
@@ -37,47 +27,24 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 
-  # POST /products
-  # POST /products.json
+  # POST /products{,.json}
   def create
     @product = Product.new(params[:product])
-
-    respond_to do |format|
-      if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
-        format.json { render json: @product, status: :created, location: @product }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
-      end
-    end
+	@product.save
+	respond_with @product
   end
 
-  # PUT /products/1
-  # PUT /products/1.json
+  # PUT /products/1{,.json}
   def update
     @product = Product.find(params[:id])
-
-    respond_to do |format|
-      if @product.update_attributes(params[:product])
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
-      end
-    end
+	@product.update_attributes(params[:product])
+	respond_with @product
   end
 
-  # DELETE /products/1
-  # DELETE /products/1.json
+  # DELETE /products/1{,.json}
   def destroy
     @product = Product.find(params[:id])
     @product.destroy
-
-    respond_to do |format|
-      format.html { redirect_to products_url }
-      format.json { head :no_content }
-    end
+	respond_with @product
   end
 end
