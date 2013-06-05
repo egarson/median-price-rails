@@ -1,7 +1,6 @@
 MedianPriceRails::Application.routes.draw do
-  resources :products
-
-
+  resources :items
+  resources :sales
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
