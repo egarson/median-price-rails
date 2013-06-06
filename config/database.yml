@@ -4,19 +4,18 @@
 
 common: &common
   adapter: postgresql
-  encoding: unicode
-  pool: 5
   username: median
   password: h4a2z3
 
 development:
   <<: *common
   database: median_dev
-  # Minimum log levels, in increasing order: debug{5..1}, notice (default), warning, error, fatal, panic
+  # log levels: debug{5..1}, notice (default), warning, error, fatal, panic
   #min_messages: warning
 
 test:
   <<: *common
+  username: median
   database: median_test
 
 production:
