@@ -1,5 +1,5 @@
 #
-#
+# Entrypoint for HTTP calls to /items/*
 #
 class ItemsController < ApplicationController
 
@@ -15,7 +15,7 @@ class ItemsController < ApplicationController
 	respond_with @item
   end
 
-  # GET /items/new{,.json}
+  # GET /items/new
   def new
     @item = Item.new
   end
@@ -25,10 +25,9 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  # POST /items{,.json}
+  # POST /items
   def create
     @item = Item.new(params[:item])
-	# @item.item_id = params[:item_id]
 	@item.save
 	respond_with @item
   end

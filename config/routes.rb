@@ -1,8 +1,10 @@
+#
+# Route HTTP requests to the correct handler
+#
 MedianPriceRails::Application.routes.draw do
+  # first created -> highest priority
   resources :items
   resources :sales
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
