@@ -1,5 +1,5 @@
 #
-# A Sale is an Item sold at a given price at a given time.
+#
 #
 class SalesController < ApplicationController
 
