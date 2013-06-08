@@ -59,5 +59,11 @@ module MedianPriceRails
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+	# Purely a server-side service: don't bother generating either helper or view_specs
+	config.generators do |g|
+	  g.view_specs false
+	  g.helper_specs false
+	end
   end
 end
