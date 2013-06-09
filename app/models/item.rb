@@ -1,8 +1,14 @@
 #
-# An Item is the object (formally speaking) of a Sale. For pedagogical purposes we model brand and year,
-# although these attributes are certainly not common to all conceivable Items to say the least.
+# An Item is an object that can be sold and that has some price-related attributes. For pedagogical purposes,
+# those attributes are brand and year, and they are static (i.e. defined at compile time).
+#
+# TODO: Dynamically ascribe attributes based on Category, and wire them up dynamically.
 #
 class Item < ActiveRecord::Base
-  has_one :sale
-  attr_accessible :brand, :year
+  attr_accessible :brand, :year, :paid
+
+  def sold
+	puts self.inspect
+	paid != nil  # presence of paid field implies sold
+  end
 end

@@ -2,9 +2,9 @@
 # Route HTTP requests to the correct handler
 #
 MedianPriceRails::Application.routes.draw do
-  # first created -> highest priority
+
+  match '/items/sold' => 'items#sold'
   resources :items
-  resources :sales
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'

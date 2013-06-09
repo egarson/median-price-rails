@@ -15,6 +15,12 @@ class ItemsController < ApplicationController
 	respond_with @item
   end
 
+  # GET /items/sold.json
+  def sold
+	@items = Item.where('paid is not null')
+	respond_with @items
+  end
+
   # GET /items/new
   def new
     @item = Item.new
