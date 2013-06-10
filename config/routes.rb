@@ -4,6 +4,7 @@
 MedianPriceRails::Application.routes.draw do
 
   match '/items/sold' => 'items#sold'
+  match '/items/median' => 'items#median'
   resources :items
 
   # Sample of regular route:

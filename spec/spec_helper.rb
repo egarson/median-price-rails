@@ -14,9 +14,9 @@ RSpec.configure do |config|
   config.order = "random"
 end
 
-def check_headers(response)
-  unless response.status == NO_CONTENT_204
-	response.headers['Content-Type'].should eq 'application/json; charset=utf-8'
-	response.headers['ETag'].should_not be_nil
+def check_headers(resp)
+  unless resp.nil? || resp.status == NO_CONTENT_204
+	['application/json','charset=utf-8'].each { |s| resp.headers['Content-Type'].should match s }
+	resp.headers['ETag'].should_not be_nil unless resp.status == BAD_REQUEST_400
   end
 end
