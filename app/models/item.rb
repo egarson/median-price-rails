@@ -4,6 +4,8 @@
 #
 # TODO: Dynamically ascribe attributes based on Category, and wire them up dynamically.
 #
+require Rails.root.join('app/common.rb')
+
 class Item < ActiveRecord::Base
   attr_accessible :brand, :year, :paid
 
