@@ -7,7 +7,7 @@
 class Item < ActiveRecord::Base
   attr_accessible :brand, :year, :paid
 
-  def sold
+  def sold?
 	paid != nil  # presence of paid field implies sold
   end
 end
