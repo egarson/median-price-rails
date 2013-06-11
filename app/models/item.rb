@@ -8,10 +8,10 @@ class Item < ActiveRecord::Base
   attr_accessible :brand, :year, :paid
 
   def sold?
-	paid != nil  # presence of paid field implies sold
+	paid != nil # presence of paid field implies sold
   end
 
-  # the collection of sold Items
+  # the collection of sold Items by brand # TODO augment w/year
   def self.sold(brand = '%')
 	Item.where(PAID_NOT_NULL + AND_BRAND_LIKE, brand)
   end

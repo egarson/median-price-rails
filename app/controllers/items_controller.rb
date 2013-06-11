@@ -6,32 +6,9 @@ class ItemsController < ApplicationController
 
   BAD_YEAR = "Bad year: expected scalar (e.g. 1999) or valid range (e.g. 2001-2013)"
 
-  # GET /items{,.json}
-  def index
-    @items = Item.all
-	respond_with @items
-  end
-
-  # GET /items/1{,.json}
-  def show
-    @item = Item.find(params[:id])
-	respond_with @item
-  end
-
-  # GET /items/sold{,.json}
-  def sold
-	brand = params[:brand] || '%'
-	@items = Item.sold(brand)
-	respond_with @items
-  end
-
-  def valid(params)
-	params[:year].match /^\d{4}(-\d{4})?$/
-  end
-
   # GET /items/median.json[?[brand=<brand>][&year=<year|year-year>]]
   def median
-	if params[:year] and !valid(params)
+	if params[:year] and !valid_years(params)
 	  render :status => BAD_REQUEST_400, :json => { :error => BAD_YEAR, :year => params[:year] }
 	  return
 	end
@@ -45,6 +22,30 @@ class ItemsController < ApplicationController
 	  :brand => params[:brand] || ANY,
 	  :year => params[:year] || ANY
 	}
+  end
+
+  def valid_years(params)
+	params[:year].match /^\d{4}(-\d{4})?$/
+  end
+  private :valid_years # meh, i don't use this much actually
+
+  # GET /items/sold{,.json}
+  def sold
+	brand = params[:brand] || '%'
+	@items = Item.sold(brand)
+	respond_with @items
+  end
+
+  # GET /items{,.json}
+  def index
+    @items = Item.all
+	respond_with @items
+  end
+
+  # GET /items/1{,.json}
+  def show
+    @item = Item.find(params[:id])
+	respond_with @item
   end
 
   # GET /items/new
