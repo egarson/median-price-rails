@@ -29,33 +29,17 @@ class ItemsController < ApplicationController
   end
   private :valid_years # meh, i don't use this much actually
 
-  # GET /items/sold{,.json}
+  # GET /items/sold.json
   def sold
 	brand = params[:brand] || '%'
 	@items = Item.sold(brand)
 	respond_with @items
   end
 
-  # GET /items{,.json}
+  # GET /items.json
   def index
     @items = Item.all
 	respond_with @items
-  end
-
-  # GET /items/1{,.json}
-  def show
-    @item = Item.find(params[:id])
-	respond_with @item
-  end
-
-  # GET /items/new
-  def new
-    @item = Item.new
-  end
-
-  # GET /items/1/edit
-  def edit
-    @item = Item.find(params[:id])
   end
 
   # POST /items
@@ -65,14 +49,14 @@ class ItemsController < ApplicationController
 	respond_with @item
   end
 
-  # PUT /items/1{,.json}
+  # PUT /items/1.json
   def update
     @item = Item.find(params[:id])
 	@item.update_attributes(params[:item])
 	respond_with @item
   end
 
-  # DELETE /items/1{,.json}
+  # DELETE /items/1.json
   def destroy
     @item = Item.find(params[:id])
     @item.destroy
