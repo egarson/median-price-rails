@@ -5,7 +5,7 @@
 common: &common
   adapter: postgresql
   username: median
-  password: h4a2z3
+  password: PUT_YOURS_HERE
 
 development:
   <<: *common
