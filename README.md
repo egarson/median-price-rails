@@ -14,7 +14,7 @@ Again, this was built for pedagogical purposes, so attributes are not assigned d
 
 ## Pragmatic REST (hint: not HATEOS)
 
-The flavor of REST as implemented by this application lies somewhere between Level 2 and 3 of the [Richardson Maturity Model](http://martinfowler.com/articles/richardsonMaturityModel.html). This is because Rails takes a pragmatic approach to REST which 'out of the box' does not fully achieve [HATEOS](http://en.wikipedia.org/wiki/HATEOAS) nirvana. To be fully Level 3, a relation would need to be set up with Item (such as Category, as per the above) with links returned in the payload to demonstrate **connectedness**, which is a core tenet of RESTful applications (and indeed, the driver behind HATEOS). That said, Rails does this to a certain extent out of the box (via the *Location* HTTP header).
+The flavor of REST as implemented by this application lies somewhere between Level 2 and 3 of the [Richardson Maturity Model](http://martinfowler.com/articles/richardsonMaturityModel.html). This is because Rails takes a pragmatic approach to REST which 'out of the box' does not fully achieve [HATEOS](http://en.wikipedia.org/wiki/HATEOAS) nirvana. To be fully Level 3, a relation would need to be set up with Item (such as Category, as per the above) with links returned in the payload to demonstrate **connectedness**, which is a core tenet of RESTful applications (and indeed, the driver behind HATEOS). Rails provides a modicum of connectedness via the *Location* HTTP header, which is useful to clients particularly in the context of POST (as the server appropriately returns the generated resource's URI).
 
 ## Testing Notes
 
@@ -25,21 +25,21 @@ The flavor of REST as implemented by this application lies somewhere between Lev
 In no particular order, here are the next items I would have liked to implement:
 
 * version the api: URIs should read something like, /median/v1/...
-* disallow both null year and brand
-* implement NOT_MODIFIED_304 using the Expires HTTP header and ETags
-* implement NOT_FOUND_404
-* implement an example of FORBIDDEN_403 (PUT to /item/<id> with an initialized :paid field)
+* implement NOT_MODIFIED/304 via ETags
+* return something sensible on NOT_FOUND/404
+* implement an example of FORBIDDEN/403 (PUT to /item/<id> with an initialized :paid field)
 * and, add an administrative back-door to enable PUT to a sold item using a 'magic' header
+* disallow both null year and brand
 * add Allow header
 * return a modicum of documentation from the root uri
 * batching large results
-* some performance/load testing
+* add performance/load tests using [tsung](http://tsung.erlang-projects.org/) which I really like
 
-## Usage
+## High-Level Setup Guide
 
 See [Rails Guides](http://guides.rubyonrails.org/) for more info on the following:
 
-* Install Rails (>= 3.2.13) and Postgres (>= 9.1.9) and all the requisite gems
+* Install Rails (>= 3.2.13) and Postgres (>= 9.1.9) and the requisite gems (n.b. there is a Gemfile)
 * Create a user *median*, put the password in config/database.yml, give it create priviledges and generate the database
 * Run the unit tests with `bundle exec rspec` to smoke test the installation
 * Launch the rails server with `rails -s` from the root of the application
