@@ -4,12 +4,15 @@
 
 common: &common
   adapter: postgresql
+  username: user
+  database: app-dev
   # username: median
-  # password: h4a2z3
+  # password: z20e1g28r0
 
 development:
   <<: *common
   database: median_dev
+  host: localhost
   # log levels: debug{5..1}, notice (default), warning, error, fatal, panic
   #min_messages: warning
 
