@@ -4,8 +4,8 @@
 
 common: &common
   adapter: postgresql
-  username: median
-  password: PUT_YOURS_HERE
+  # username: median
+  # password: h4a2z3
 
 development:
   <<: *common

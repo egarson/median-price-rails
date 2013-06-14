@@ -2,9 +2,9 @@
 
 Welcome to median-price-rails. This is the server side of a (very) simple system that demonstrates fundamental RESTful principles and was built for a prospective employer to show basic Ruby and web architecture skills. As this was built purely for pedagogical purposes, it omits crucial aspects of systems development, such as any notion of security.
 
-A mobile client (see [median-price-android](http://github.com/egarson/median-price-android) complements and integrates with this system.
+A pending mobile client (see [median-price-android](http://github.com/egarson/median-price-android)) complements and integrates with this application.
 
-This was built using [Ruby on Rails](http://rubyonrails.org), an MVC-based web framework that has pretty good support for [REST](http://en.wikipedia.org/wiki/Representational_state_transfer) out of the box (see below for more).
+This was built using [Ruby on Rails](http://rubyonrails.org) 3.1.2, an MVC-based web framework that has pretty good support for [REST](http://en.wikipedia.org/wiki/Representational_state_transfer) out of the box (see below for more).
 
 ## What does it Do?
 
@@ -33,7 +33,7 @@ In no particular order, here are the next items I would have liked to implement:
 * add Allow header
 * return a modicum of documentation from the root uri
 * batching large results
-* add performance/load tests using [tsung](http://tsung.erlang-projects.org/) which I really like
+* add performance/load tests, perhaps using [tsung](http://tsung.erlang-projects.org/): performance testing should be a [*first-class citizen*](http://www.thoughtworks.com/radar).
 
 ## High-Level Setup Guide
 
