@@ -17,8 +17,8 @@ Again, this was built for pedagogical purposes, so attributes are not assigned d
 #### GET all items
   curl http://median-price.herokuapp.com/items.json
 
-#### GET the median price for 2011 Mercedes
-  curl http://median-price.herokuapp.com/items.json?brand=merc&year=2011-2011
+#### GET the median price for 2011-2012 Mercedes
+  curl http://median-price.herokuapp.com/items/median.json?brand=merc&year=2011-2012
 
 ## Pragmatic REST
 
