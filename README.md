@@ -1,8 +1,8 @@
 # median-price-rails
 
-Welcome to median-price-rails. This is the server side of a (very) simple system that demonstrates fundamental RESTful principles and was built for a prospective employer to show basic Ruby and web architecture skills. As this was built purely for pedagogical purposes, it omits crucial aspects of systems development, such as any notion of security.
+Welcome to median-price-rails. This is the server side of a (very) simple web app that uses RESTful principles. It was built for a prospective employer to show basic Ruby and web architecture skills. As this was built purely for pedagogical purposes, it omits crucial aspects of systems development, such as any notion of security.
 
-A pending mobile client (see [median-price-android](http://github.com/egarson/median-price-android)) complements and integrates with this application.
+This is deployed to [the Heroku platform](https://www.heroku.com/) at http://median-price.herokuapp.com. The [median-price-android](http://github.com/egarson/median-price-android) mobile client complements and integrates with this app using the Heroku host.
 
 This was built using [Ruby on Rails](http://rubyonrails.org) 3.1.2, an MVC-based web framework that has pretty good support for [REST](http://en.wikipedia.org/wiki/Representational_state_transfer) out of the box (see below for more).
 
@@ -12,13 +12,24 @@ This application provides a service to calculate the median price paid for a giv
 
 Again, this was built for pedagogical purposes, so attributes are not assigned dynamically by category, which could be one approach to reify this functionality in a 'real' application. That is to say, the notion of brand and year do not apply to the sale of all Items, which this system assumes.
 
-## Pragmatic REST (hint: not HATEOS)
+### Examples
 
-The flavor of REST as implemented by this application lies somewhere between Level 2 and 3 of the [Richardson Maturity Model](http://martinfowler.com/articles/richardsonMaturityModel.html). This is because Rails takes a pragmatic approach to REST which 'out of the box' does not fully achieve [HATEOS](http://en.wikipedia.org/wiki/HATEOAS) nirvana. To be fully Level 3, a relation would need to be set up with Item (such as Category, as per the above) with links returned in the payload to demonstrate **connectedness**, which is a core tenet of RESTful applications (and indeed, the driver behind HATEOS). Rails provides a modicum of connectedness via the *Location* HTTP header, which is useful to clients particularly in the context of POST (as the server appropriately returns the generated resource's URI).
+#### GET all items
+  curl http://median-price.herokuapp.com/items.json
+
+#### GET the median price for 2011 Mercedes
+  curl http://median-price.herokuapp.com/items.json?brand=merc&year=2011-2011
+
+## Pragmatic REST
+
+The flavor of REST as implemented by this application lies somewhere between Level 2 and 3 of the [Richardson Maturity Model](http://martinfowler.com/articles/richardsonMaturityModel.html). Rails takes a pragmatic approach to REST which 'out of the box' but cannot fully achieve [HATEOS](http://en.wikipedia.org/wiki/HATEOAS) nirvana without assistance from the programmer(!). To be fully Level 3, a relation would need to be set up with Item (such as Category, as per the above) with links returned in the payload to demonstrate **connectedness**, which is a core tenet of The RESTful Way (and indeed, the driver behind HATEOS).
+
+Rails provides assistance with Level 3 via the *Location* HTTP header (after a successful POST, for example) but cannot grok the state of the application from the perspective of connected resources from there.
 
 ## Testing Notes
 
-* [RSpec](http://rspec.info/) was used in preference to Test::Unit, mostly because it's what I've been using with Ruby for the last while
+* [RSpec](http://rspec.info/) was used in preference to Test::Unit, mostly because it's what I've been using with Ruby for the last while.
+* The tests are arguably a bit repetitive in order to make intent clear. I generall eschew the use of setup/teardown for this reason (with the exception to save time: fast tests trump intent).
 
 ## TODO
 
