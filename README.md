@@ -1,8 +1,8 @@
 # median-price-rails
 
-Welcome to median-price-rails. This is the server side of a (very) simple web app that uses RESTful principles. It was built for a prospective employer to show basic Ruby and web architecture skills. As this was built purely for pedagogical purposes, it omits crucial aspects of systems development, such as any notion of security.
+This is the server side of a simple web app that employs RESTful principles. It was built for a prospective employer to show basic Ruby and web development skills. As this was built for pedagogical purposes, it omits crucial aspects of systems development, such as any notion of security. Furthermore, the code base emphasises clarity over robustness.
 
-This is deployed to [the Heroku platform](https://www.heroku.com/) at http://median-price.herokuapp.com. The [median-price-android](http://github.com/egarson/median-price-android) mobile client complements and integrates with this app using the Heroku host.
+This is currently deployed to [Heroku](https://www.heroku.com/) at http://median-price.herokuapp.com. The [median-price-android](http://github.com/egarson/median-price-android) mobile client interacts with this app via the Heroku host.
 
 This was built using [Ruby on Rails](http://rubyonrails.org) 3.1.2, an MVC-based web framework that has pretty good support for [REST](http://en.wikipedia.org/wiki/Representational_state_transfer) out of the box (see below for more).
 
@@ -14,11 +14,16 @@ Again, this was built for pedagogical purposes, so attributes are not assigned d
 
 ### Examples
 
-#### GET all items
-  curl http://median-price.herokuapp.com/items.json
+#### GET - list all items
+	curl http://median-price.herokuapp.com/items.json
 
-#### GET the median price for 2011-2012 Mercedes
-  curl http://median-price.herokuapp.com/items/median.json?brand=merc&year=2011-2012
+#### GET - the median price for 2011-2012 Mercedes
+	curl http://median-price.herokuapp.com/items/median.json?brand=merc&year=2011-2012
+
+#### POST - add a new item:
+	curl -d 'item[brand]=bmw&item[year]=2010&item[paid]=23000' http://median-price.herokuapp.com/items.json
+
+(Note that the -d switch automatically tells curl to -X POST).
 
 ## Pragmatic REST
 
