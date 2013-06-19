@@ -6,6 +6,7 @@ class ItemsController < ApplicationController
 
   BAD_YEAR = "Bad year: expected scalar (e.g. 1999) or valid range (e.g. 2001-2013)"
 
+  # Cater for all permutations of brand, year, and year range
   # GET /items/median.json[?[brand=<brand>][&year=<year|year-year>]]
   def median
 	if params[:year] and !valid_years(params)
@@ -17,6 +18,7 @@ class ItemsController < ApplicationController
 	years << years[0] if years && years.length == 1 # make range work with single date
 	median = Item.median(brand, years)
 
+	# render directly: this is just a simple service
 	render :json => {
 	  :median => median.to_f.round(2),
 	  :brand => params[:brand] || ANY,
@@ -27,7 +29,7 @@ class ItemsController < ApplicationController
   def valid_years(params)
 	params[:year].match /^\d{4}(-\d{4})?$/
   end
-  private :valid_years # meh, i don't use this much actually
+  private :valid_years
 
   # GET /items/sold.json
   def sold
